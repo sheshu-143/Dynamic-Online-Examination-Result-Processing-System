@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # Online Examination System
 
 A complete Node.js/Express based online examination platform with MySQL database integration.
@@ -213,3 +214,6 @@ ISC
 
 **Created:** March 2026
 **Last Updated:** March 5, 2026
+=======
+# Dynamic-Online-Examination-Result-Processing-System
+>>>>>>> 05c46780f6cad150e2af8d286dc289a1f0dd0e99
