@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Exam - Online Examination System</title>
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+    <div class="exam-navbar">
+        <div class="container">
+            <div class="exam-header">
+                <div class="exam-title">
+                    <h2 id="examTitle">Exam Title</h2>
+                </div>
+                <div class="exam-timer">
+                    <p>Time Remaining: <span id="timer">60:00</span></p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="container exam-container">
+        <div class="exam-content">
+            <div id="questionsContainer">
+                <p>Loading questions...</p>
+            </div>
+
+            <div class="exam-actions">
+                <button id="submitBtn" class="btn btn-primary">Submit Exam</button>
+                <button id="cancelBtn" class="btn btn-secondary">Cancel</button>
+            </div>
+        </div>
+
+        <div class="exam-sidebar">
+            <div class="question-navigator">
+                <h3>Questions Navigation</h3>
+                <div id="questionsList" class="questions-list">
+                    <!-- Questions will be populated here -->
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <p>&copy; 2026 Online Examination System. All rights reserved.</p>
+    </footer>
+
+    <script src="/js/main.js"></script>
+    <script src="/js/exam.js"></script>
+</body>
+</html>

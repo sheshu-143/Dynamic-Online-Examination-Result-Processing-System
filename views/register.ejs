@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Register - Online Examination System</title>
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+
+<body>
+    <div class="navbar">
+        <div class="container">
+            <div class="logo">
+                <h1>📝 Online Examination System</h1>
+            </div>
+            <div class="nav-menu">
+                <a href="/" class="nav-link">Home</a>
+                <a href="/login" class="nav-link">Login</a>
+                <a href="/register" class="nav-link">Register</a>
+            </div>
+        </div>
+    </div>
+
+    <div class="auth-container">
+        <div class="auth-card">
+            <h2>Create Account</h2>
+
+            <% if (typeof message !=='undefined' ) { %>
+                <div class="alert alert-info">
+                    <%= message %>
+                </div>
+                <% } %>
+
+                    <form id="registerForm">
+                        <div class="form-group">
+                            <label for="firstName">First Name</label>
+                            <input type="text" id="firstName" name="firstName" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="lastName">Last Name</label>
+                            <input type="text" id="lastName" name="lastName" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="username">Username</label>
+                            <input type="text" id="username" name="username" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="email">Email</label>
+                            <input type="email" id="email" name="email" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="password">Password</label>
+                            <input type="password" id="password" name="password" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="passwordConfirm">Confirm Password</label>
+                            <input type="password" id="passwordConfirm" name="passwordConfirm" required>
+                        </div>
+
+                        <button type="submit" class="btn btn-primary btn-block">Register</button>
+                    </form>
+
+                    <p class="form-footer">
+                        Already have an account? <a href="/login">Login here</a>
+                    </p>
+        </div>
+    </div>
+
+    <footer>
+        <p>&copy; 2026 Online Examination System. All rights reserved.</p>
+    </footer>
+
+    <script src="/js/main.js"></script>
+    <script>
+                        document.getElementById('registerForm').addEventListener('submit', async (e) => {
+                            e.preventDefault();
+
+                            const firstName = document.getElementById('firstName').value;
+                            const lastName = document.getElementById('lastName').value;
+                            const username = document.getElementById('username').value;
+                            const email = document.getElementById('email').value;
+                            const password = document.getElementById('password').value;
+                            const passwordConfirm = document.getElementById('passwordConfirm').value;
+
+                            if (password !== passwordConfirm) {
+                                showAlert('Passwords do not match', 'danger');
+                                return;
+                            }
+
+                            try {
+                                // The endpoint is just sending status(201) when successful based on authController.js structure
+                                // Although authController.js does res.render, let's just make the request using fetch natively to handle HTML response or JSON.
+                                const response = await fetch('/api/auth/register', {
+                                    method: 'POST',
+                                    headers: { 'Content-Type': 'application/json' },
+                                    body: JSON.stringify({ firstName, lastName, username, email, password, passwordConfirm })
+                                });
+
+                                // Because auth controller currently uses res.render('register'), it returns HTML.
+                                // Wait, no. When error from backend, it status(400).render. Let's just do a basic redirect to login on nice status
+                                if (response.ok) {
+                                    showAlert('Registration successful! Redirecting to login...', 'success');
+                                    setTimeout(() => window.location.href = '/login', 1500);
+                                } else {
+                                    // try to parse json if backend threw JSON error (e.g., db error)
+                                    let errorText;
+                                    try {
+                                        const json = await response.json();
+                                        errorText = json.message || 'Registration failed';
+                                        if (json.location) errorText += ` (${json.location})`;
+                                        if (json.code) errorText += ` [${json.code}]`;
+                                    } catch (err) {
+                                        errorText = "Registration failed. Email might be in use.";
+                                    }
+                                    showAlert(errorText, 'danger');
+                                }
+                            } catch (error) {
+                                showAlert(error.message || 'Registration failed', 'danger');
+                            }
+                        });
+                    </script>
+</body>
+
+</html>
+</body>
+
+</html>

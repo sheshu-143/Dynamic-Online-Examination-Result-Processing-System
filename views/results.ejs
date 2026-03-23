@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Results - Online Examination System</title>
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+    <div class="navbar">
+        <div class="container">
+            <div class="logo">
+                <h1>📝 Online Examination System</h1>
+            </div>
+            <div class="nav-menu">
+                <a href="/" class="nav-link">Home</a>
+                <a href="/login" class="nav-link">Login</a>
+                <a href="/register" class="nav-link">Register</a>
+                <a href="/exams" class="nav-link">Exams</a>
+            </div>
+        </div>
+    </div>
+
+    <div class="container">
+        <h2>My Exam Results</h2>
+        
+        <div class="results-summary">
+            <div class="summary-card">
+                <h4>Total Exams</h4>
+                <p id="totalExams" class="summary-number">0</p>
+            </div>
+            <div class="summary-card">
+                <h4>Passed</h4>
+                <p id="passedExams" class="summary-number">0</p>
+            </div>
+            <div class="summary-card">
+                <h4>Failed</h4>
+                <p id="failedExams" class="summary-number">0</p>
+            </div>
+            <div class="summary-card">
+                <h4>Average Score</h4>
+                <p id="averageScore" class="summary-number">0%</p>
+            </div>
+        </div>
+
+        <div id="resultsContainer" class="results-table">
+            <table>
+                <thead>
+                    <tr>
+                        <th>Exam Title</th>
+                        <th>Subject</th>
+                        <th>Score</th>
+                        <th>Percentage</th>
+                        <th>Status</th>
+                        <th>Date</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+                <tbody id="resultsBody">
+                    <tr>
+                        <td colspan="7" style="text-align: center;">Loading results...</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <footer>
+        <p>&copy; 2026 Online Examination System. All rights reserved.</p>
+    </footer>
+
+    <script src="/js/main.js"></script>
+    <script src="/js/results.js"></script>
+</body>
+</html>

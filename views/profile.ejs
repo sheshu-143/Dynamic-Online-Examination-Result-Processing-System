@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Profile - Online Examination System</title>
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+    <div class="navbar">
+        <div class="container">
+            <div class="logo">
+                <h1>📝 Online Examination System</h1>
+            </div>
+            <div class="nav-menu">
+                <a href="/" class="nav-link">Home</a>
+                <a href="/login" class="nav-link">Login</a>
+                <a href="/register" class="nav-link">Register</a>
+                <a href="/exams" class="nav-link">Exams</a>
+            </div>
+        </div>
+    </div>
+
+    <div class="container">
+        <h2>My Profile</h2>
+        <div id="profileInfo">
+            <p>Loading profile details...</p>
+        </div>
+    </div>
+
+    <footer>
+        <p>&copy; 2026 Online Examination System. All rights reserved.</p>
+    </footer>
+
+    <script src="/js/main.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', async () => {
+            try {
+                const data = await apiRequest('/api/auth/me');
+                const container = document.getElementById('profileInfo');
+                container.innerHTML = `
+                    <p><strong>Username:</strong> ${data.username}</p>
+                    <p><strong>Email:</strong> ${data.email}</p>
+                    <p><strong>First Name:</strong> ${data.first_name || ''}</p>
+                    <p><strong>Last Name:</strong> ${data.last_name || ''}</p>
+                    <p><strong>User Type:</strong> ${data.user_type}</p>
+                `;
+            } catch (err) {
+                const container = document.getElementById('profileInfo');
+                container.textContent = 'Could not load profile details.';
+            }
+        });
+    </script>
+</body>
+</html>
